@@ -15,47 +15,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.appweb.recetas_backend.model.entitites.Usuario;
-import com.appweb.recetas_backend.service.UsuarioService;
+import com.appweb.recetas_backend.model.entitites.Receta;
+import com.appweb.recetas_backend.service.RecetaService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("api/usuarios")
-public class UsuarioController {
+@RequestMapping("api/recetas")
+public class RecetaController {
     @Autowired
-    private UsuarioService usuarioService;
+    private RecetaService recetaService;
 
     //---------MÉTODOS GET---------//
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        List<Usuario> usuarios = usuarioService.getAllUsuarios();
-        return usuarios;
+    public List<Receta> getAllRecetas() {
+        List<Receta> recetas = recetaService.getAllRecetas();
+        return recetas;
     }
 
     @GetMapping("/{id}")
-    public Optional<Usuario> getUsuarioById(@PathVariable Integer id){
-        var usuario = usuarioService.getUsuarioById(id);
-        return usuario;
+    public Optional<Receta> getRecetaById(@PathVariable Integer id){
+        var receta = recetaService.getRecetaById(id);
+        return receta;
     }
 
     //---------MÉTODOS POST---------//
     @PostMapping
-    public ResponseEntity<Object> createUsuario(@RequestBody @Valid Usuario usuario){
-        var validacionEmail = usuarioService.validarUsuarioPorEmail(usuario.getEmail());
-        if (!validacionEmail.getStatus()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validacionEmail);
+    public ResponseEntity<Object> createReceta(@RequestBody @Valid Receta receta){
+        var validacionNombre = recetaService.validarRecetaPorNombre(receta.getNombre());
+        if (!validacionNombre.getStatus()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validacionNombre);
         }
 
-        var response = usuarioService.createUsuario(usuario);
+        var response = recetaService.createReceta(receta);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     //---------MÉTODOS PUT---------//
-    //Actualizar usuario
+    //Actualizar receta
     @PutMapping("/{id}")
-    public ResponseEntity<Object>  updateUsuario(@PathVariable Integer id, @RequestBody @Valid Usuario usuario){
-        var response = usuarioService.updateUsuario(id, usuario);
+    public ResponseEntity<Object>  updateReceta(@PathVariable Integer id, @RequestBody @Valid Receta receta){
+        var response = recetaService.updateReceta(id, receta);
         if (response.getStatus()) {
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }else{
@@ -64,10 +64,10 @@ public class UsuarioController {
     }
 
     //---------MÉTODOS DELETE---------//
-    //Eliminar usuario
+    //Eliminar receta
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteUsuario(@PathVariable Integer id){
-        var response = usuarioService.deleteUsuario(id);
+    public ResponseEntity<Object> deleteReceta(@PathVariable Integer id){
+        var response = recetaService.deleteReceta(id);
         if (!response.getStatus()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
