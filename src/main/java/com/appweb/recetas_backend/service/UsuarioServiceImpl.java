@@ -81,13 +81,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         var usuarioExiste = usuarioRepository.findById(id);
         if (!usuarioExiste.isEmpty()) {
             Usuario usuario = usuarioExiste.get();
-            usuario.setApellidoMaterno(objUsuario.getApellidoMaterno());
-            usuario.setApellidoPaterno(objUsuario.getApellidoPaterno());
-            usuario.setDireccion(objUsuario.getDireccion());
             usuario.setEmail(objUsuario.getEmail());
             usuario.setNombre(objUsuario.getNombre());
-            usuario.setPerfil(objUsuario.getPerfil());
-            usuario.setTelefono(objUsuario.getTelefono());
             usuario.setcontrasena(objUsuario.getcontrasena());
             usuario.setIdUsuario(id);
             //Actualizar usuario
