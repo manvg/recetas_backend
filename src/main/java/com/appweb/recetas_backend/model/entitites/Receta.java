@@ -58,6 +58,9 @@ public class Receta {
     @Size(min = 2, max = 50, message = "Debe tener entre 2 y 50 caracteres")
     private String dificultad;
 
+    @Column(name = "url_imagen")
+    private String url_imagen;
+
     public int getIdReceta() {
         return idReceta;
     }
@@ -128,5 +131,13 @@ public class Receta {
 
     public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
+    }
+
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
     }
 }

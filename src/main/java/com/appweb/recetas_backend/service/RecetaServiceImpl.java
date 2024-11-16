@@ -15,10 +15,14 @@ public class RecetaServiceImpl implements RecetaService {
     @Autowired
     private RecetaRepository recetaRepository;
 
+    public RecetaServiceImpl(RecetaRepository recetaRepository) {
+        this.recetaRepository = recetaRepository;
+    }
+
     //---------GET---------//
     @Override
-    public List<Receta> getAllRecetas(){
-        return recetaRepository.findAll();
+    public List<Receta> getAllRecetas(String nombre, String tipoCocina, String ingredientes, String paisOrigen, String dificultad) {
+        return recetaRepository.buscarRecetas(nombre, tipoCocina, ingredientes, paisOrigen, dificultad);
     }
 
     @Override

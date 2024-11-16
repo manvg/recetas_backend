@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appweb.recetas_backend.model.entitites.Receta;
@@ -30,9 +31,9 @@ public class RecetaController {
 
     //---------MÉTODOS GET---------//
     @GetMapping
-    public List<Receta> getAllRecetas() {
-        List<Receta> recetas = recetaService.getAllRecetas();
-        return recetas;
+    public List<Receta> getAllRecetas(@RequestParam(required = false) String nombre,@RequestParam(required = false) String tipoCocina,@RequestParam(required = false) String ingredientes,@RequestParam(required = false) String paisOrigen,@RequestParam(required = false) String dificultad) {
+
+        return recetaService.getAllRecetas(nombre, tipoCocina, ingredientes, paisOrigen, dificultad);
     }
 
     @GetMapping("/{id}")

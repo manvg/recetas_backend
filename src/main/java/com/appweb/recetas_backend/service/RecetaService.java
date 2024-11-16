@@ -6,7 +6,7 @@ import com.appweb.recetas_backend.model.dto.ResponseModel;
 import com.appweb.recetas_backend.model.entitites.Receta;
 
 public interface RecetaService {
-    List<Receta> getAllRecetas();
+    List<Receta> getAllRecetas(String nombre, String tipoCocina, String ingredientes, String paisOrigen, String dificultad);
     Optional<Receta> getRecetaById(Integer id);
     ResponseModel validarRecetaPorNombre(String nombre);
     ResponseModel createReceta(Receta receta);
