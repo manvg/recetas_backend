@@ -1,5 +1,8 @@
 package com.appweb.recetas_backend.config;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 import java.nio.charset.StandardCharsets;
@@ -21,5 +24,30 @@ public class Constants {
     public static Key getSigningKey() {
         byte[] keyBytes = Constants.SUPER_SECRET_KEY.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    // Validar el token
+    public static boolean validateToken(String token) {
+        try {
+            if (token.startsWith(TOKEN_BEARER_PREFIX)) {
+                token = token.substring(TOKEN_BEARER_PREFIX.length());
+            }
+
+            Jws<Claims> claimsJws = Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey())
+                    .build()
+                    .parseClaimsJws(token);
+
+            String issuer = claimsJws.getBody().getIssuer();
+            if (!ISSUER_INFO.equals(issuer)) {
+                return false;
+            }
+
+            // El token es válido
+            return true;
+        } catch (Exception e) {
+            // Si ocurre alguna excepción, el token no es válido
+            return false;
+        }
     }
 }

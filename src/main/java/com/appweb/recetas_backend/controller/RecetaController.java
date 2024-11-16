@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appweb.recetas_backend.model.entitites.Receta;
 import com.appweb.recetas_backend.service.RecetaService;
+import com.appweb.recetas_backend.config.Constants;
 
 import jakarta.validation.Valid;
 
@@ -41,7 +43,23 @@ public class RecetaController {
 
     //---------MÉTODOS POST---------//
     @PostMapping
-    public ResponseEntity<Object> createReceta(@RequestBody @Valid Receta receta){
+    public ResponseEntity<Object> createReceta(@RequestHeader(value = "Authorization", required = false) String token,@RequestBody @Valid Receta receta) {
+
+        // Validar que el token esté presente
+        if (token == null || !token.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token no válido o ausente");
+        }
+
+        // Extraer el token real quitando el prefijo "Bearer "
+        String actualToken = token.substring(7);
+
+        // Verificar el token (ejemplo de validación con un servicio externo o un método interno)
+        boolean isTokenValid = Constants.validateToken(actualToken);
+        if (!isTokenValid) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido");
+        }
+
+        // Lógica original de creación de receta
         var validacionNombre = recetaService.validarRecetaPorNombre(receta.getNombre());
         if (!validacionNombre.getStatus()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validacionNombre);
