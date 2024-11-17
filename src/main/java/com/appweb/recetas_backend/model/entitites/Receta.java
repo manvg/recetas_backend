@@ -41,17 +41,17 @@ public class Receta {
     @Column(name = "tipo_cocina")
     @NotNull
     @Size(min = 2, max = 150, message = "Debe tener entre 2 y 150 caracteres")
-    private String tipo_cocina;
+    private String tipoCocina;
 
     @Column(name = "pais_origen")
     @NotNull
     @Size(min = 2, max = 150, message = "Debe tener entre 2 y 150 caracteres")
-    private String pais_origen;
+    private String paisOrigen;
 
     @Column(name = "tiempo_coccion")
     @NotNull
     @Size(min = 2, max = 30, message = "Debe tener entre 2 y 30 caracteres")
-    private String tiempo_coccion;
+    private String tiempoCoccion;
 
     @Column(name = "dificultad")
     @NotNull
@@ -59,10 +59,10 @@ public class Receta {
     private String dificultad;
 
     @Column(name = "url_imagen")
-    private String url_imagen;
+    private String urlImagen;
 
     @Column(name = "url_video")
-    private String url_video; 
+    private String urlVideo; 
     
     public int getIdReceta() {
         return idReceta;
@@ -104,28 +104,28 @@ public class Receta {
         this.instrucciones = instrucciones;
     }
 
-    public String getTipo_cocina() {
-        return tipo_cocina;
+    public String getTipoCocina() {
+        return tipoCocina;
     }
 
-    public void setTipo_cocina(String tipo_cocina) {
-        this.tipo_cocina = tipo_cocina;
+    public void setTipoCocina(String tipoCocina) {
+        this.tipoCocina = tipoCocina;
     }
 
-    public String getPais_origen() {
-        return pais_origen;
+    public String getPaisOrigen() {
+        return paisOrigen;
     }
 
-    public void setPais_origen(String pais_origen) {
-        this.pais_origen = pais_origen;
+    public void setPaisOrigen(String paisOrigen) {
+        this.paisOrigen = paisOrigen;
     }
 
-    public String getTiempo_coccion() {
-        return tiempo_coccion;
+    public String getTiempoCoccion() {
+        return tiempoCoccion;
     }
 
-    public void setTiempo_coccion(String tiempo_coccion) {
-        this.tiempo_coccion = tiempo_coccion;
+    public void setTiempoCoccion(String tiempoCoccion) {
+        this.tiempoCoccion = tiempoCoccion;
     }
 
     public String getDificultad() {
@@ -136,19 +136,19 @@ public class Receta {
         this.dificultad = dificultad;
     }
 
-    public String getUrl_imagen() {
-        return url_imagen;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public void setUrl_imagen(String url_imagen) {
-        this.url_imagen = url_imagen;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
-    public String getUrl_video() {
-        return url_video;
+    public String getUrlVideo() {
+        return urlVideo;
     }
 
-    public void setUrl_video(String url_video) {
-        this.url_video = url_video;
+    public void setUrlVideo(String urlVideo) {
+        this.urlVideo = urlVideo;
     }
 }

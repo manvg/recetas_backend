@@ -54,9 +54,9 @@ public class RecetaServiceImpl implements RecetaService {
             receta.setDescripcion(objReceta.getDescripcion());
             receta.setIngredientes(objReceta.getIngredientes());
             receta.setInstrucciones(objReceta.getInstrucciones());
-            receta.setTipo_cocina(objReceta.getTipo_cocina());
-            receta.setPais_origen(objReceta.getPais_origen());
-            receta.setTiempo_coccion(objReceta.getTiempo_coccion());
+            receta.setTipoCocina(objReceta.getTipoCocina());
+            receta.setPaisOrigen(objReceta.getPaisOrigen());
+            receta.setTiempoCoccion(objReceta.getTiempoCoccion());
             receta.setDificultad(objReceta.getDificultad());
             receta.setIdReceta(id);
             
