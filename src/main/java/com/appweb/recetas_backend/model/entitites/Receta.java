@@ -61,6 +61,9 @@ public class Receta {
     @Column(name = "url_imagen")
     private String url_imagen;
 
+    @Column(name = "url_video")
+    private String url_video; 
+    
     public int getIdReceta() {
         return idReceta;
     }
@@ -139,5 +142,13 @@ public class Receta {
 
     public void setUrl_imagen(String url_imagen) {
         this.url_imagen = url_imagen;
+    }
+
+    public String getUrl_video() {
+        return url_video;
+    }
+
+    public void setUrl_video(String url_video) {
+        this.url_video = url_video;
     }
 }
